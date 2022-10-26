@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "esnext",     //就是比较新的 ES 的一个语法
+    "module": "esnext",    //esnext就是ESmodule, 这个是必须的, 因为 vite 它在使用开发环境的模块加载的时候必须要使用 ES model 因为我们在 index.html 里面我们也看到了它这边的 script 标签的 type 是 module ，也就是用 module 的方式来去加载我们的 js 模块的。
+    "moduleResolution": "node",   //就是通过 node 的方式来去解析模块
+    "jsx": "preserve",    //使用jsx重要属性，因为 ts 如果让它去解析 jsx 语法，把它编译成 js 那么它只会遵循 React 的规范，它不会使用插件。那么对于 vue 来说， React 的规范是不符合 vue 的一个 jsx 的一个编译的规范的，必须要使用 vue 的 jsx 的插件@vitejs/plugin-vue-jsx。所以我们使用 preserve 就让 TypeScript 不编译 jsx 的语法,让后面的插件去编译。
+    "strict": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,  //是可以直接 import JSON文件
+    "esModuleInterop": true,   //方便我们去做一些 import 。比如说我们如果不开启这个我们 import React 要使用 import * as React 这种写法，那么这个其实会比较的麻烦。那么开了这个之后，我们就可以直接使用 import react from react。
+    "lib": ["esnext", "dom"], //支持的哪些内置的一些module 比如说 dom, 那么因为我们是前端项目，我们肯定要用 DOM 的环境，那么它里面会包含一些像 element 之类的类，这些是浏览器环境自带的。那么这个我们不需要 import 就作为 global 的。
+    "isolatedModules": true,  //
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],   //编译哪些文件夹下面的哪些文件作为 ts 的目标源
+}
